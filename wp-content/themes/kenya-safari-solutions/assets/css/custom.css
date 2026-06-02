@@ -1130,3 +1130,239 @@ header nav .lg\:flex {
         gap: 0;
     }
 }
+
+/* Remove left spacing from logo */
+header .flex-shrink-0 {
+    margin-left: -8px !important;
+}
+
+/* Ensure the nav has no extra padding */
+header nav {
+    padding-left: 0 !important;
+    padding-right: 0.5rem !important;
+}
+
+/* Container padding adjustment */
+@media (min-width: 1024px) {
+    header .px-2 {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+}
+
+/* Remove any default margin from the logo link */
+header a:first-child {
+    margin-left: 0 !important;
+}
+
+/* Adjust for very large screens */
+@media (min-width: 1280px) {
+    header .px-2 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+
+/* Site logo specific styling */
+.site-logo {
+    margin-left: -4px !important;
+}
+
+/* Remove any default list padding that might affect spacing */
+header ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* FORCE logo to left edge - NO SPACING */
+header .mx-auto.max-w-7xl {
+    padding-left: 0 !important;
+    padding-right: 1rem !important;
+}
+
+header nav {
+    padding-left: 0 !important;
+}
+
+.site-logo {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Remove any left margin from the first child of nav */
+header nav > a:first-child {
+    margin-left: -12px !important;
+}
+
+/* Adjust for all screen sizes */
+@media (max-width: 640px) {
+    header .mx-auto.max-w-7xl {
+        padding-left: 0 !important;
+        padding-right: 0.5rem !important;
+    }
+    .site-logo {
+        margin-left: -4px !important;
+    }
+}
+
+/* Debug - add border to see logo boundaries (remove later) */
+.site-logo {
+    /* border: 1px solid red; */ /* Uncomment to debug */
+}
+
+/* Force logo to left edge - override flex spacing */
+header nav {
+    justify-content: flex-start !important;
+    gap: 0 !important;
+}
+
+header .flex-shrink-0:first-child {
+    margin-right: auto !important;
+}
+
+/* Remove any gap between elements */
+header nav .gap-4 {
+    gap: 0 !important;
+}
+
+/* Position the right icons to the right */
+header nav .flex.items-center.gap-2.flex-shrink-0:last-child {
+    margin-left: auto !important;
+}
+
+/* Ensure logo has no left margin */
+.site-logo {
+    margin-left: -16px !important;
+    padding-left: 0 !important;
+}
+
+/* Adjust container padding */
+header .px-0 {
+    padding-left: 0 !important;
+    padding-right: 1rem !important;
+}
+
+/* SOLUTION: Move logo to the very left */
+header nav {
+    position: relative;
+}
+
+.site-logo {
+    position: relative;
+    left: -12px;
+}
+
+/* On mobile, adjust offset */
+@media (max-width: 768px) {
+    .site-logo {
+        left: -8px;
+    }
+}
+
+/* DEBUG - Show boundaries (remove after fix) */
+body > header {
+}
+body > header > div {
+}
+body > header nav {
+}
+.site-logo {
+}
+
+/* Remove nav padding that's pushing logo inward */
+header nav {
+    padding-left: 0 !important;
+}
+
+/* Adjust logo negative margin to compensate */
+.site-logo {
+    margin-left: -8px !important;
+    padding-left: 0 !important;
+}
+
+/* Ensure container has no padding on left */
+header > div {
+    padding-left: 0 !important;
+}
+
+/* Fix logo alignment - remove margin-right auto that was pushing everything */
+header .flex-shrink-0:first-child {
+    margin-right: 0 !important;
+}
+
+/* Let the nav use normal flex layout */
+header nav {
+    justify-content: space-between !important;
+}
+
+/* Keep logo at left with no extra space */
+.site-logo {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Remove any left padding from nav */
+header nav {
+    padding-left: 0 !important;
+}
+
+/* Center the desktop menu */
+.desktop-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* On mobile, don't center */
+@media (max-width: 1023px) {
+    .desktop-nav {
+        position: static;
+        transform: none;
+    }
+}
+
+/* Add small left padding to logo */
+.site-logo {
+    padding-left: 8px !important;
+}
+
+/* Responsive logo padding */
+.site-logo {
+    padding-left: 8px !important;
+}
+
+/* Slightly less padding on mobile */
+@media (max-width: 768px) {
+    .site-logo {
+        padding-left: 4px !important;
+    }
+}
+
+/* Add visible left padding to logo */
+.site-logo {
+    padding-left: 16px !important;
+}
+
+/* Adjust container to allow padding */
+header nav {
+    padding-left: 0 !important;
+}
+
+/* Ensure the logo has breathing room */
+header .flex-shrink-0:first-child {
+    margin-left: 0 !important;
+}
+
+/* Add proper spacing to header container */
+header > div {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+/* On mobile, slightly less padding */
+@media (max-width: 768px) {
+    header > div {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+}

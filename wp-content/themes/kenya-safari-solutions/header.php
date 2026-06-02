@@ -40,10 +40,10 @@
 </script>
 
 <header class="fixed inset-x-0 top-0 z-50 transition-all duration-500 py-4">
-    <div class="mx-auto max-w-7xl px-4">
-        <nav class="flex items-center justify-between gap-4 rounded-full px-4 py-2 transition-all duration-500 bg-white/90 dark:bg-[#241710]/90 backdrop-blur-sm border border-gray-200 dark:border-[#3f2c21]">
+    <div class="mx-auto max-w-7xl px-0">
+        <nav class="flex items-center justify-between gap-4 rounded-full px-2 py-2 transition-all duration-500 bg-white/90 dark:bg-[#241710]/90 backdrop-blur-sm border border-gray-200 dark:border-[#3f2c21]">
             <!-- Logo -->
-            <a href="<?php echo home_url(); ?>" class="flex items-center gap-2 flex-shrink-0">
+            <a href="<?php echo home_url(); ?>" class="site-logo flex items-center gap-2 flex-shrink-0">
                 <?php if (has_custom_logo()): ?>
                     <?php the_custom_logo(); ?>
                 <?php else: ?>
@@ -77,7 +77,7 @@
             </div>
 
             <!-- Right Icons -->
-            <div class="flex items-center gap-2 flex-shrink-0">
+            <div class="site-logo flex items-center gap-2 flex-shrink-0">
                 <button id="theme-toggle" onclick="window.setTheme(!document.documentElement.classList.contains('dark'))" class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 dark:bg-[#5a3d2e] text-gray-700 dark:text-amber-400 hover:bg-gray-200 dark:hover:bg-[#77482e] transition">
                     <i id="theme-icon" class="fas fa-moon"></i>
                 </button>
