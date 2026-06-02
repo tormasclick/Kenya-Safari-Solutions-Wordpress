@@ -22,6 +22,7 @@
     } else {
         document.documentElement.classList.remove('dark');
     }
+    
     window.setTheme = function(isDark) {
         if (isDark) {
             document.documentElement.classList.add('dark');
@@ -41,6 +42,7 @@
 <header class="fixed inset-x-0 top-0 z-50 transition-all duration-500 py-4">
     <div class="mx-auto max-w-7xl px-4">
         <nav class="flex items-center justify-between gap-4 rounded-full px-4 py-2 transition-all duration-500 bg-white/90 dark:bg-[#241710]/90 backdrop-blur-sm border border-gray-200 dark:border-[#3f2c21]">
+            <!-- Logo -->
             <a href="<?php echo home_url(); ?>" class="flex items-center gap-2 flex-shrink-0">
                 <?php if (has_custom_logo()): ?>
                     <?php the_custom_logo(); ?>
@@ -53,12 +55,13 @@
                 </div>
             </a>
 
-            <ul class="hidden lg:flex items-center gap-1">
+            <!-- Desktop Menu - Visible on desktop only -->
+            <div class="desktop-nav">
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'primary',
                     'container' => false,
-                    'items_wrap' => '%3$s',
+                    'menu_class' => 'flex items-center gap-1',
                     'fallback_cb' => false,
                     'walker' => new class extends Walker_Nav_Menu {
                         function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
@@ -71,8 +74,9 @@
                     }
                 ));
                 ?>
-            </ul>
+            </div>
 
+            <!-- Right Icons -->
             <div class="flex items-center gap-2 flex-shrink-0">
                 <button id="theme-toggle" onclick="window.setTheme(!document.documentElement.classList.contains('dark'))" class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 dark:bg-[#5a3d2e] text-gray-700 dark:text-amber-400 hover:bg-gray-200 dark:hover:bg-[#77482e] transition">
                     <i id="theme-icon" class="fas fa-moon"></i>
@@ -80,19 +84,25 @@
                 <a href="#" id="whatsapp-btn" class="hidden md:inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:scale-105 transition">
                     <i class="fab fa-whatsapp"></i> Chat with us
                 </a>
+                <!-- Mobile menu button - Visible only on mobile -->
                 <button id="mobile-menu-btn" class="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 dark:bg-[#3f2c21]">
                     <i class="fas fa-bars text-gray-700 dark:text-white"></i>
                 </button>
             </div>
         </nav>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden mobile-menu-container">
+        <!-- Mobile Menu - Hidden by default -->
+        <div id="mobile-menu" class="hidden mt-2 rounded-2xl bg-white/95 dark:bg-[#241710]/95 backdrop-blur-md p-4 shadow-xl border border-gray-200 dark:border-[#3f2c21] lg:hidden">
+            <div class="flex justify-end mb-3">
+                <button id="mobile-menu-close" class="text-gray-500 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
             <?php
             wp_nav_menu(array(
                 'theme_location' => 'primary',
                 'container' => false,
-                'menu_class' => 'mobile-menu-items',
+                'menu_class' => 'grid gap-2',
                 'fallback_cb' => false,
             ));
             ?>
@@ -101,24 +111,48 @@
 </header>
 
 <script>
+// Scroll effect
+let scrolled = false;
+function onScroll() {
+    const header = document.querySelector('header');
+    const nav = document.querySelector('header nav');
+    if (window.scrollY > 24) {
+        if (!scrolled) {
+            header?.classList.add('py-2');
+            header?.classList.remove('py-4');
+            nav?.classList.add('bg-white/95', 'dark:bg-[#241710]/95', 'shadow-lg');
+            nav?.classList.remove('bg-white/90', 'dark:bg-[#241710]/90');
+            scrolled = true;
+        }
+    } else {
+        if (scrolled) {
+            header?.classList.remove('py-2');
+            header?.classList.add('py-4');
+            nav?.classList.remove('bg-white/95', 'dark:bg-[#241710]/95', 'shadow-lg');
+            nav?.classList.add('bg-white/90', 'dark:bg-[#241710]/90');
+            scrolled = false;
+        }
+    }
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function() {
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
+    const closeBtn = document.getElementById('mobile-menu-close');
     
     if (menuBtn && mobileMenu) {
         menuBtn.addEventListener('click', function(e) {
             e.preventDefault();
             mobileMenu.classList.toggle('hidden');
         });
-        
-        // Close when clicking a link
-        const links = mobileMenu.querySelectorAll('a');
-        links.forEach(link => {
-            link.addEventListener('click', function() {
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
                 mobileMenu.classList.add('hidden');
             });
-        });
+        }
     }
 });
 

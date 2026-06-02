@@ -880,3 +880,253 @@ body.menu-open {
 .hidden {
     display: none !important;
 }
+
+/* Ensure desktop menu shows on larger screens */
+@media (min-width: 1024px) {
+    .lg\\:flex {
+        display: flex !important;
+    }
+}
+
+/* Make sure mobile menu button hides on desktop */
+@media (min-width: 1024px) {
+    #mobile-menu-btn {
+        display: none !important;
+    }
+    
+    #mobile-menu {
+        display: none !important;
+    }
+}
+
+/* Mobile menu button shows only on mobile */
+@media (max-width: 1023px) {
+    #mobile-menu-btn {
+        display: inline-flex !important;
+    }
+}
+
+/* Force desktop menu visibility */
+@media (min-width: 1024px) {
+    .lg\\:flex {
+        display: flex !important;
+    }
+    
+    .hidden.lg\\:flex {
+        display: flex !important;
+    }
+}
+
+/* Ensure desktop menu is visible on all screen sizes above 1024px */
+header .lg\\:flex {
+    display: flex !important;
+}
+
+/* Desktop menu - visible on large screens */
+@media (min-width: 1024px) {
+    .lg\\:flex {
+        display: flex !important;
+    }
+}
+
+/* Mobile menu button - visible only on mobile */
+@media (max-width: 1023px) {
+    #mobile-menu-btn {
+        display: inline-flex !important;
+    }
+}
+
+/* Desktop menu - hidden on mobile */
+@media (max-width: 1023px) {
+    header .lg\\:flex {
+        display: none !important;
+    }
+}
+
+/* Ensure desktop menu is visible on desktop */
+@media (min-width: 1024px) {
+    header .lg\\:flex {
+        display: flex !important;
+    }
+}
+
+/* Ensure chat button is visible on desktop */
+@media (min-width: 768px) {
+    .md\\:inline-flex {
+        display: inline-flex !important;
+    }
+}
+
+/* Hide mobile menu button on desktop */
+@media (min-width: 1024px) {
+    #mobile-menu-btn {
+        display: none !important;
+    }
+}
+
+/* Show mobile menu button on mobile */
+@media (max-width: 1023px) {
+    #mobile-menu-btn {
+        display: inline-flex !important;
+    }
+    header .lg\\:flex {
+        display: none !important;
+    }
+}
+
+/* FORCE DESKTOP MENU VISIBILITY */
+header ul.hidden.lg\:flex {
+    display: flex !important;
+}
+
+/* Override any hidden classes on desktop */
+@media (min-width: 1024px) {
+    .lg\:flex {
+        display: flex !important;
+    }
+    
+    .hidden.lg\:flex {
+        display: flex !important;
+    }
+}
+
+/* Make sure the nav container shows the menu */
+header nav .lg\:flex {
+    display: flex !important;
+}
+
+/* Desktop menu - hidden on mobile, visible on desktop */
+.desktop-menu {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .desktop-menu {
+        display: flex !important;
+    }
+}
+
+/* Mobile menu button - visible on mobile, hidden on desktop */
+#mobile-menu-btn {
+    display: inline-flex;
+}
+
+@media (min-width: 1024px) {
+    #mobile-menu-btn {
+        display: none !important;
+    }
+}
+
+/* Force desktop menu to show on screens larger than 1024px */
+@media (min-width: 1024px) {
+    header .lg\:block {
+        display: block !important;
+    }
+    
+    .lg\:block {
+        display: block !important;
+    }
+}
+
+/* Ensure the menu container is visible */
+header nav .lg\:block {
+    display: block !important;
+}
+
+/* Desktop navigation */
+.desktop-nav {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .desktop-nav {
+        display: block !important;
+    }
+}
+
+/* Mobile menu button - hide on desktop, show on mobile */
+#mobile-menu-btn {
+    display: inline-flex;
+}
+
+@media (min-width: 1024px) {
+    #mobile-menu-btn {
+        display: none !important;
+    }
+}
+
+/* Mobile menu - hide on desktop */
+@media (min-width: 1024px) {
+    #mobile-menu {
+        display: none !important;
+    }
+}
+
+/* Desktop navigation - hidden on mobile, visible on desktop */
+.desktop-nav {
+    display: none !important;
+}
+
+@media (min-width: 1024px) {
+    .desktop-nav {
+        display: block !important;
+    }
+}
+
+/* Mobile menu button - visible on mobile, hidden on desktop */
+#mobile-menu-btn {
+    display: inline-flex !important;
+}
+
+@media (min-width: 1024px) {
+    #mobile-menu-btn {
+        display: none !important;
+    }
+}
+
+/* Mobile menu container - hidden on desktop */
+#mobile-menu {
+    display: none !important;
+}
+
+@media (max-width: 1023px) {
+    #mobile-menu {
+        display: block !important;
+    }
+}
+
+/* Ensure the main nav doesn't cause issues */
+header nav .lg\:flex {
+    display: flex !important;
+}
+
+/* Chat button - always visible */
+#whatsapp-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+    color: white;
+    padding: 0.625rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    transition: all 0.3s ease;
+}
+
+#whatsapp-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+}
+
+/* On mobile, make chat button slightly smaller */
+@media (max-width: 768px) {
+    #whatsapp-btn span {
+        display: none;
+    }
+    #whatsapp-btn {
+        padding: 0.5rem;
+        gap: 0;
+    }
+}
