@@ -1,0 +1,40 @@
+# WordPress core
+/wp-admin/
+/wp-includes/
+/wp-content/plugins/
+/wp-content/languages/
+/wp-content/upgrade/
+
+# Uploads (media files)
+/wp-content/uploads/
+
+# Configuration
+wp-config.php
+wp-config-sample.php
+
+# Environment files
+.env
+.env.local
+
+# Logs
+*.log
+error_log
+debug.log
+
+# Database
+*.sql
+*.sql.gz
+
+# IDE
+.idea/
+.vscode/
+.DS_Store
+*.swp
+
+# Node modules
+node_modules/
+package-lock.json
+
+# Build files
+*.min.css
+*.min.js.map

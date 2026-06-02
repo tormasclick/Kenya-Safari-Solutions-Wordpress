@@ -1,0 +1,882 @@
+/* CSS Variables for Light/Dark Mode - Using Brand Colors */
+:root {
+    --background: #ffffff;
+    --foreground: #1a1a1a;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --gold: #fbbf24;
+    --ember: #ea580c;
+    --section-destinations: #ffffff;
+    --section-marine: #f7ebe3;
+    --section-packages: #ffffff;
+    --section-rentals: #f7ebe3;
+    --section-transfers: #ffffff;
+    --section-testimonials: #f7ebe3;
+    --section-cta: #2a1f18;
+}
+
+/* Dark Mode - Using Your Brand Colors */
+.dark {
+    --background: #0f0a08;
+    --foreground: #f5f0eb;
+    --card: #241710;
+    --border: #3f2c21;
+    --gold: #e8a87c;
+    --ember: #d4784a;
+    --section-destinations: #0f0a08;
+    --section-marine: #1a120c;
+    --section-packages: #0f0a08;
+    --section-rentals: #1a120c;
+    --section-transfers: #0f0a08;
+    --section-testimonials: #1a120c;
+    --section-cta: #2a1f18;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Fraunces', serif;
+    letter-spacing: -0.02em;
+}
+
+/* Gradient text */
+.text-gradient-gold {
+    background: linear-gradient(135deg, var(--gold), var(--ember));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+/* Animation */
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+    animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Mobile Menu Styles */
+#mobile-menu {
+    transition: all 0.3s ease;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#mobile-menu.hidden {
+    display: none !important;
+}
+
+#mobile-menu:not(.hidden) {
+    display: block !important;
+    position: fixed !important;
+    top: 80px !important;
+    left: 16px !important;
+    right: 16px !important;
+    background-color: #ffffff !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
+    z-index: 9999 !important;
+    padding: 20px !important;
+    border: 1px solid #e5e7eb !important;
+}
+
+.dark #mobile-menu:not(.hidden) {
+    background-color: #241710 !important;
+    border-color: #3f2c21 !important;
+}
+
+#mobile-menu a {
+    display: block;
+    padding: 14px 16px;
+    color: #374151;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.2s;
+    font-size: 1rem;
+}
+
+.dark #mobile-menu a {
+    color: #f5f0eb;
+}
+
+#mobile-menu a:hover {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.dark #mobile-menu a:hover {
+    background-color: #3f2c21;
+    color: #e8a87c;
+}
+
+/* Mobile menu close button */
+#mobile-menu-close {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+#mobile-menu-close:hover {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.dark #mobile-menu-close:hover {
+    background-color: #3f2c21;
+    color: #e8a87c;
+}
+
+/* Section backgrounds */
+section[style*="var(--section-destinations)"],
+.section-destinations {
+    background-color: var(--section-destinations) !important;
+}
+
+/* Search Wizard dark mode */
+.dark select,
+.dark input[type="date"] {
+    background-color: #1a120c !important;
+    color: #f5f0eb !important;
+    border-color: #5a3d2e !important;
+}
+
+/* Hero button in dark mode */
+.dark .bg-white.text-gray-900 {
+    background-color: #1f2937 !important;
+    color: #ffffff !important;
+}
+
+/* FORCE Search Wizard Dark Mode Colors - HIGHEST PRIORITY */
+.dark .search-wizard select,
+.dark .search-wizard input,
+.dark .search-wizard .bg-white,
+.dark .relative.rounded-2xl select,
+.dark .relative.rounded-2xl input,
+.dark select#search-destination,
+.dark select#search-budget,
+.dark input#search-start,
+.dark input#search-end,
+.dark .flex.items-center.gap-2.bg-white {
+    background-color: #422b1b !important;
+    border-color: #5a3d2e !important;
+    color: #ffffff !important;
+}
+
+.dark .relative.rounded-2xl {
+    background-color: #2a1f18 !important;
+}
+
+.dark .bg-white\/95 {
+    background-color: rgba(42, 31, 24, 0.95) !important;
+}
+
+.dark .text-gray-600,
+.dark .text-gray-500,
+.dark .text-gray-400 {
+    color: #c4b5a5 !important;
+}
+
+.dark .border-gray-200 {
+    border-color: #422b1b !important;
+}
+
+.dark .text-amber-500,
+.dark .text-amber-400 {
+    color: #fbbf24 !important;
+}
+
+.dark .bg-gray-100 {
+    background-color: #5a3d2e !important;
+}
+
+.dark .bg-gray-100:hover {
+    background-color: #77482e !important;
+}
+
+/* Override any conflicting Tailwind dark mode classes */
+.dark .bg-white {
+    background-color: #422b1b !important;
+}
+
+.dark .bg-gray-50 {
+    background-color: #1a120c !important;
+}
+
+/* Fix adult/kids counter text in dark mode */
+.dark #adults-count,
+.dark #children-count,
+.dark .text-sm.font-semibold {
+    color: #ffffff !important;
+}
+
+.dark .flex.items-center.gap-2 button {
+    color: #ffffff !important;
+}
+
+.dark button#adults-plus,
+.dark button#adults-minus,
+.dark button#children-plus,
+.dark button#children-minus {
+    color: #ffffff !important;
+    background-color: #5a3d2e !important;
+}
+
+.dark button#adults-plus:hover,
+.dark button#adults-minus:hover,
+.dark button#children-plus:hover,
+.dark button#children-minus:hover {
+    background-color: #77482e !important;
+}
+
+.dark .text-xs.text-gray-600 {
+    color: #c4b5a5 !important;
+}
+
+/* Fix Explore Safaris button background color */
+.dark .bg-white.text-gray-900,
+.dark a.bg-white,
+.dark .group.inline-flex.items-center.gap-2.rounded-full.bg-white {
+    background-color: #422b1b !important;
+    color: #ffffff !important;
+}
+
+.dark .bg-white.text-gray-900:hover,
+.dark a.bg-white:hover {
+    background-color: #5a3d2e !important;
+}
+
+/* Fix hamburger icon color in dark mode */
+.dark #mobile-menu-btn i,
+.dark #mobile-menu-btn .fas.fa-bars {
+    color: #ffffff !important;
+}
+
+.dark #mobile-menu-btn {
+    background-color: #3f2c21 !important;
+}
+
+.dark #mobile-menu-btn:hover {
+    background-color: #5a3d2e !important;
+}
+
+/* Fix logo alignment - remove left padding */
+header nav a:first-child {
+    padding-left: 0 !important;
+}
+
+header .pl-2 {
+    padding-left: 0 !important;
+}
+
+/* Menu items text white in dark mode */
+.dark header ul li a:not(.bg-gradient-to-r) {
+    color: #ffffff !important;
+}
+
+.dark header ul li a:hover {
+    color: #fbbf24 !important;
+}
+
+/* Mobile menu items text white in dark mode */
+.dark #mobile-menu a {
+    color: #ffffff !important;
+}
+
+.dark #mobile-menu a:hover {
+    color: #fbbf24 !important;
+    background-color: #3f2c21 !important;
+}
+
+/* Remove any left padding from logo */
+header nav a:first-child {
+    margin-left: -4px !important;
+}
+
+/* Ensure all menu items are white in dark mode */
+.dark header nav ul li a {
+    color: #ffffff !important;
+}
+
+.dark header nav ul li a.bg-gradient-to-r {
+    color: #ffffff !important;
+}
+
+/* Desktop menu items */
+.dark .text-gray-700 {
+    color: #ffffff !important;
+}
+
+/* Menu items text color in dark mode - dark/black */
+.dark header nav ul li a:not(.bg-gradient-to-r) {
+    color: #1a1a1a !important;
+}
+
+.dark header nav ul li a:hover {
+    color: #d97706 !important;
+}
+
+/* Active menu item in dark mode */
+.dark header nav ul li a.bg-gradient-to-r {
+    color: #ffffff !important;
+}
+
+/* Mobile menu items in dark mode - dark text */
+.dark #mobile-menu a {
+    color: #1a1a1a !important;
+}
+
+.dark #mobile-menu a:hover {
+    color: #d97706 !important;
+    background-color: #fef3c7 !important;
+}
+
+/* FORCE LOGO TO LEFT - NO SPACING */
+header .max-w-7xl {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+header nav {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+header nav a:first-child {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Remove any left padding from container */
+header .px-4 {
+    padding-left: 0 !important;
+    padding-right: 1rem !important;
+}
+
+/* Menu items dark mode - DARK TEXT */
+.dark header nav ul li a:not(.bg-gradient-to-r) {
+    color: #1a1a1a !important;
+    background-color: transparent !important;
+}
+
+.dark header nav ul li a:hover {
+    background-color: #fef3c7 !important;
+    color: #d97706 !important;
+}
+
+/* Force dark text on all non-active menu items */
+.dark .text-gray-700 {
+    color: #1a1a1a !important;
+}
+
+/* Keep gradient button text white */
+.dark .bg-gradient-to-r {
+    color: #ffffff !important;
+}
+
+/* Mobile menu items - ensure visibility in dark mode */
+.dark #mobile-menu a {
+    color: #1a1a1a !important;
+    background-color: transparent !important;
+}
+
+.dark #mobile-menu a:hover {
+    background-color: #fef3c7 !important;
+    color: #d97706 !important;
+}
+
+/* Ensure mobile menu has proper background */
+.dark #mobile-menu {
+    background-color: #ffffff !important;
+}
+
+/* Force logo to the very left */
+header .max-w-7xl {
+    padding-left: 0 !important;
+}
+
+header .px-4 {
+    padding-left: 0 !important;
+}
+
+header nav {
+    padding-left: 0 !important;
+}
+
+header nav a:first-child {
+    margin-left: 0 !important;
+    padding-left: 4px !important;
+}
+
+/* Mobile menu visibility */
+#mobile-menu {
+    transition: all 0.3s ease;
+}
+
+#mobile-menu.hidden {
+    display: none !important;
+}
+
+#mobile-menu:not(.hidden) {
+    display: block !important;
+}
+
+/* Mobile menu items in dark mode */
+.dark #mobile-menu a {
+    color: #1a1a1a !important;
+}
+
+.dark #mobile-menu a:hover {
+    background-color: #fef3c7 !important;
+    color: #d97706 !important;
+}
+
+/* Header dark mode on page load */
+.dark header nav {
+    background-color: rgba(36, 23, 16, 0.9) !important;
+    border-color: #3f2c21 !important;
+}
+
+/* Logo left alignment */
+header .pl-2 {
+    padding-left: 0 !important;
+}
+
+header nav a:first-child {
+    margin-left: -8px !important;
+}
+
+/* Desktop menu items dark mode - dark text */
+.dark header nav ul li a:not(.bg-gradient-to-r) {
+    color: #1a1a1a !important;
+}
+
+.dark header nav ul li a:hover {
+    color: #d97706 !important;
+}
+
+/* Force mobile menu visibility - simple rules */
+#mobile-menu.hidden {
+    display: none !important;
+}
+
+#mobile-menu:not(.hidden) {
+    display: block !important;
+    position: absolute;
+    top: 80px;
+    left: 16px;
+    right: 16px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    padding: 16px;
+}
+
+.dark #mobile-menu:not(.hidden) {
+    background: #1f2937;
+}
+
+/* FORCE MOBILE MENU VISIBILITY - DIRECT STYLES */
+#mobile-menu {
+    display: none !important;
+}
+
+#mobile-menu:not(.hidden) {
+    display: block !important !important;
+    position: fixed !important;
+    top: 80px !important;
+    left: 16px !important;
+    right: 16px !important;
+    background-color: #ffffff !important;
+    border-radius: 16px !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
+    z-index: 9999 !important;
+    padding: 16px !important;
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+}
+
+.dark #mobile-menu:not(.hidden) {
+    background-color: #1f2937 !important;
+}
+
+#mobile-menu a {
+    display: block !important;
+    padding: 12px 16px !important;
+    color: #374151 !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    border-radius: 8px !important;
+}
+
+.dark #mobile-menu a {
+    color: #e5e7eb !important;
+}
+
+#mobile-menu a:hover {
+    background-color: #fef3c7 !important;
+    color: #d97706 !important;
+}
+
+.dark #mobile-menu a:hover {
+    background-color: #374151 !important;
+    color: #fbbf24 !important;
+}
+
+/* Close button */
+#mobile-menu-close {
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Override any conflicting Tailwind classes */
+.hidden {
+    display: none !important;
+}
+
+.block {
+    display: block !important;
+}
+
+/* Mobile menu styling - display controlled by JS inline style */
+#mobile-menu {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 16px;
+    right: 16px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    padding: 16px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.dark #mobile-menu {
+    background-color: #1f2937;
+}
+
+#mobile-menu a {
+    display: block;
+    padding: 12px 16px;
+    color: #374151;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 8px;
+}
+
+.dark #mobile-menu a {
+    color: #e5e7eb;
+}
+
+#mobile-menu a:hover {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.dark #mobile-menu a:hover {
+    background-color: #374151;
+    color: #fbbf24;
+}
+
+/* Mobile menu - Your brand colors */
+#mobile-menu {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 16px;
+    right: 16px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Dark mode - Your brand color #241710 */
+.dark #mobile-menu {
+    background-color: #241710;
+    border: 1px solid #3f2c21;
+}
+
+/* Menu items - Light mode */
+#mobile-menu a {
+    display: block;
+    padding: 14px 16px;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.2s;
+}
+
+/* Menu items - Dark mode */
+.dark #mobile-menu a {
+    color: #f5f0eb;
+}
+
+/* Hover effects */
+#mobile-menu a:hover {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.dark #mobile-menu a:hover {
+    background-color: #3f2c21;
+    color: #e8a87c;
+}
+
+/* Close button */
+#mobile-menu-close {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+#mobile-menu-close:hover {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.dark #mobile-menu-close:hover {
+    background-color: #3f2c21;
+    color: #e8a87c;
+}
+
+/* Prevent body scroll when menu is open */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Debug - make sure menu is visible */
+#mobile-menu {
+    transition: all 0.3s ease;
+}
+
+#mobile-menu[style*="display: block"] {
+    display: block !important;
+}
+
+/* Mobile Menu - Brand Colors */
+#mobile-menu {
+    position: fixed;
+    top: 80px;
+    left: 16px;
+    right: 16px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+    border: 1px solid #e5e7eb;
+}
+
+/* Dark mode - Your brand color */
+.dark #mobile-menu {
+    background-color: #241710;
+    border-color: #3f2c21;
+}
+
+/* Menu items */
+#mobile-menu a {
+    display: block;
+    padding: 14px 16px;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.2s;
+    font-size: 1rem;
+}
+
+/* Dark mode menu items */
+.dark #mobile-menu a {
+    color: #f5f0eb;
+}
+
+/* Hover effects */
+#mobile-menu a:hover {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.dark #mobile-menu a:hover {
+    background-color: #3f2c21;
+    color: #e8a87c;
+}
+
+/* Close button */
+#mobile-menu-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #6b7280;
+}
+
+.dark #mobile-menu-close {
+    color: #9ca3af;
+}
+
+#mobile-menu-close:hover {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.dark #mobile-menu-close:hover {
+    background-color: #3f2c21;
+    color: #e8a87c;
+}
+
+/* Force mobile menu hidden on page load */
+#mobile-menu {
+    display: none !important;
+}
+
+#mobile-menu.menu-visible {
+    display: block !important;
+}
+
+/* Mobile Menu - Brand Colors for Dark Mode */
+#mobile-menu {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+}
+
+.dark #mobile-menu {
+    background-color: #241710 !important;
+    border-color: #3f2c21 !important;
+}
+
+/* Menu items */
+#mobile-menu a {
+    color: #1a1a1a;
+}
+
+.dark #mobile-menu a {
+    color: #f5f0eb !important;
+}
+
+/* Hover effects */
+#mobile-menu a:hover {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.dark #mobile-menu a:hover {
+    background-color: #3f2c21 !important;
+    color: #e8a87c !important;
+}
+
+/* Close button */
+#mobile-menu-close {
+    color: #6b7280;
+}
+
+.dark #mobile-menu-close {
+    color: #c4b5a5 !important;
+}
+
+#mobile-menu-close:hover {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.dark #mobile-menu-close:hover {
+    background-color: #3f2c21 !important;
+    color: #e8a87c !important;
+}
+
+/* Ensure the menu uses brand colors when visible */
+.dark #mobile-menu:not(.hidden) {
+    background-color: #241710 !important;
+    border-color: #3f2c21 !important;
+}
+
+/* Mobile Menu Container */
+.mobile-menu-container {
+    position: fixed;
+    top: 80px;
+    left: 16px;
+    right: 16px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    border: 1px solid #e5e7eb;
+}
+
+/* Dark mode - Your brand color */
+.dark .mobile-menu-container {
+    background-color: #241710 !important;
+    border-color: #3f2c21 !important;
+}
+
+/* Menu items */
+.mobile-menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mobile-menu-items a {
+    display: block;
+    padding: 12px 16px;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.2s;
+}
+
+/* Dark mode menu items */
+.dark .mobile-menu-items a {
+    color: #f5f0eb !important;
+}
+
+/* Hover effects */
+.mobile-menu-items a:hover {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.dark .mobile-menu-items a:hover {
+    background-color: #3f2c21 !important;
+    color: #e8a87c !important;
+}
+
+/* Hidden class */
+.hidden {
+    display: none !important;
+}

@@ -1,0 +1,171 @@
+<?php
+/**
+ * Kenya Safari Solutions Theme Functions
+ * Modular approach - each feature in its own file
+ */
+
+// Theme Setup
+function kenya_safari_setup() {
+    add_theme_support('post-thumbnails');
+    add_theme_support('title-tag');
+    add_theme_support('custom-logo');
+    
+    register_nav_menus(array(
+        'primary' => 'Primary Menu',
+        'footer' => 'Footer Menu',
+    ));
+    
+    add_image_size('destination-card', 600, 450, true);
+    add_image_size('destination-grid', 800, 600, true);
+}
+add_action('after_setup_theme', 'kenya_safari_setup');
+
+// Enqueue assets
+function kenya_safari_assets() {
+    wp_enqueue_style('kenya-custom', get_template_directory_uri() . '/assets/css/custom.css', array(), '1.0');
+    wp_enqueue_script('kenya-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0', true);
+}
+add_action('wp_enqueue_scripts', 'kenya_safari_assets');
+
+// Load modular files
+require_once get_template_directory() . '/inc/destinations-cpt.php';
+require_once get_template_directory() . '/inc/accommodations-cpt.php';
+require_once get_template_directory() . '/inc/marine-cpt.php';
+
+// Load Packages CPT
+require_once get_template_directory() . '/inc/packages-cpt.php';
+
+// Load Transfers CPT
+require_once get_template_directory() . '/inc/transfers-cpt.php';
+
+// Load Rentals CPT
+require_once get_template_directory() . '/inc/rentals-cpt.php';
+
+// Load Testimonials CPT
+require_once get_template_directory() . '/inc/testimonials-cpt.php';
+
+// Ensure customizer settings are saved
+function kenya_safari_customize_preview() {
+    if (is_customize_preview()) {
+        wp_enqueue_script('kenya-customizer-preview', get_template_directory_uri() . '/assets/js/customizer-preview.js', array('jquery', 'customize-preview'), '1.0', true);
+    }
+}
+add_action('customize_preview_init', 'kenya_safari_customize_preview');
+
+// Load Theme Options
+require_once get_template_directory() . '/inc/theme-options.php';
+
+// Make Custom Post Types appear in menu editor
+function kenya_safari_add_cpts_to_menu() {
+    // Add Destinations to menu
+    add_post_type_support('destination', 'page-attributes');
+    
+    // Add Accommodations to menu
+    add_post_type_support('accommodation', 'page-attributes');
+    
+    // Add Marine to menu
+    add_post_type_support('marine', 'page-attributes');
+    
+    // Add Packages to menu
+    add_post_type_support('package', 'page-attributes');
+    
+    // Add Transfers to menu
+    add_post_type_support('transfer', 'page-attributes');
+    
+    // Add Rentals to menu
+    add_post_type_support('rental', 'page-attributes');
+}
+add_action('init', 'kenya_safari_add_cpts_to_menu');
+
+// Show custom post types in menu editor
+function kenya_safari_add_cpt_to_menu_editor() {
+    $post_types = array(
+        'destination' => 'Destinations',
+        'accommodation' => 'Accommodations',
+        'marine' => 'Marine Activities',
+        'package' => 'Safari Packages',
+        'transfer' => 'Transfers',
+        'rental' => 'Rentals'
+    );
+    
+    foreach ($post_types as $post_type => $label) {
+        add_meta_box(
+            "add-{$post_type}",
+            $label,
+            'kenya_safari_cpt_menu_meta_box',
+            'nav-menus',
+            'side',
+            'default',
+            array('post_type' => $post_type)
+        );
+    }
+}
+add_action('admin_head-nav-menus.php', 'kenya_safari_add_cpt_to_menu_editor');
+
+function kenya_safari_cpt_menu_meta_box($object, $box) {
+    $post_type = $box['args']['post_type'];
+    $posts = get_posts(array(
+        'post_type' => $post_type,
+        'numberposts' => -1,
+        'orderby' => 'title',
+        'order' => 'ASC'
+    ));
+    
+    if ($posts) {
+        echo '<div id="posttype-' . $post_type . '" class="posttypediv">';
+        echo '<div class="tabs-panel tabs-panel-active">';
+        echo '<ul class="categorychecklist form-no-clear">';
+        
+        foreach ($posts as $post) {
+            printf(
+                '<li><label class="menu-item-title"><input type="checkbox" value="%s" name="post_id" /> %s</label></li>',
+                esc_attr($post->ID),
+                esc_html($post->post_title)
+            );
+        }
+        
+        echo '</ul>';
+        echo '</div>';
+        echo '<p class="button-controls">';
+        echo '<span class="add-to-menu">';
+        echo '<input type="submit" class="button-secondary submit-add-to-menu right" value="Add to Menu" name="add-post-type-menu-item" id="submit-posttype-' . $post_type . '" />';
+        echo '</span>';
+        echo '</p>';
+        echo '</div>';
+    } else {
+        echo '<p>No items found.</p>';
+    }
+}
+
+// Add archive pages to menu editor
+function kenya_safari_add_archive_pages_to_menu($items) {
+    $archive_pages = array(
+        'destinations' => 'All Destinations',
+        'accommodations' => 'All Accommodations',
+        'marine' => 'All Marine Activities',
+        'packages' => 'All Safari Packages',
+        'transfers' => 'All Transfers',
+        'rentals' => 'All Rentals'
+    );
+    
+    foreach ($archive_pages as $slug => $title) {
+        $items->items[] = (object) array(
+            'ID' => 'archive-' . $slug,
+            'db_id' => 0,
+            'object_id' => 'archive-' . $slug,
+            'object' => 'custom',
+            'type' => 'custom',
+            'type_label' => 'Custom',
+            'title' => $title,
+            'url' => home_url('/' . $slug . '/'),
+            'target' => '',
+            'attr_title' => '',
+            'description' => '',
+            'classes' => array(),
+            'xfn' => ''
+        );
+    }
+    
+    return $items;
+}
+add_filter('wp_get_nav_menu_items', 'kenya_safari_add_archive_pages_to_menu');

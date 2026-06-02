@@ -1,0 +1,153 @@
+<?php
+/**
+ * Theme Options Page for CTA Section
+ */
+
+// Add admin menu
+function kenya_safari_admin_menu() {
+    add_theme_page(
+        'CTA Settings',
+        'CTA Settings',
+        'manage_options',
+        'kenya-safari-cta',
+        'kenya_safari_cta_page'
+    );
+}
+add_action('admin_menu', 'kenya_safari_admin_menu');
+
+// Register settings
+function kenya_safari_register_settings() {
+    register_setting('kenya_safari_cta_settings', 'kenya_cta_badge');
+    register_setting('kenya_safari_cta_settings', 'kenya_cta_title');
+    register_setting('kenya_safari_cta_settings', 'kenya_cta_gradient_text');
+    register_setting('kenya_safari_cta_settings', 'kenya_cta_description');
+    register_setting('kenya_safari_cta_settings', 'kenya_cta_btn1_text');
+    register_setting('kenya_safari_cta_settings', 'kenya_cta_btn1_url');
+    register_setting('kenya_safari_cta_settings', 'kenya_cta_btn2_text');
+    register_setting('kenya_safari_cta_settings', 'kenya_cta_bg_color');
+    register_setting('kenya_safari_cta_settings', 'kenya_cta_bg_image');
+}
+add_action('admin_init', 'kenya_safari_register_settings');
+
+// Enqueue media uploader script
+function kenya_safari_admin_scripts($hook) {
+    if ($hook != 'appearance_page_kenya-safari-cta') {
+        return;
+    }
+    wp_enqueue_media();
+    wp_enqueue_script('kenya-admin-upload', get_template_directory_uri() . '/assets/js/admin-upload.js', array('jquery'), '1.0', true);
+}
+add_action('admin_enqueue_scripts', 'kenya_safari_admin_scripts');
+
+// CTA Settings Page
+function kenya_safari_cta_page() {
+    ?>
+    <div class="wrap">
+        <h1><?php echo esc_html__('CTA Section Settings', 'kenya-safari'); ?></h1>
+        <form method="post" action="options.php">
+            <?php settings_fields('kenya_safari_cta_settings'); ?>
+            <?php do_settings_sections('kenya_safari_cta_settings'); ?>
+            
+            <table class="form-table">
+                <tr>
+                    <th scope="row"><?php echo esc_html__('Badge Text', 'kenya-safari'); ?></th>
+                    <td>
+                        <input type="text" name="kenya_cta_badge" value="<?php echo esc_attr(get_option('kenya_cta_badge', 'Ready when you are')); ?>" class="regular-text" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo esc_html__('Main Title', 'kenya-safari'); ?></th>
+                    <td>
+                        <input type="text" name="kenya_cta_title" value="<?php echo esc_attr(get_option('kenya_cta_title', 'Ready for your Kenya adventure?')); ?>" class="regular-text" />
+                        <p class="description">The text before the gradient highlight</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo esc_html__('Gradient Highlight Text', 'kenya-safari'); ?></th>
+                    <td>
+                        <input type="text" name="kenya_cta_gradient_text" value="<?php echo esc_attr(get_option('kenya_cta_gradient_text', 'Kenya adventure?')); ?>" class="regular-text" />
+                        <p class="description">This text will have the gold gradient (include punctuation like ? or !)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo esc_html__('Description', 'kenya-safari'); ?></th>
+                    <td>
+                        <textarea name="kenya_cta_description" rows="3" class="large-text"><?php echo esc_textarea(get_option('kenya_cta_description', 'We\'ll design it around you. Reply in minutes — book in days.')); ?></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo esc_html__('Button 1 Text', 'kenya-safari'); ?></th>
+                    <td>
+                        <input type="text" name="kenya_cta_btn1_text" value="<?php echo esc_attr(get_option('kenya_cta_btn1_text', 'Plan My Safari')); ?>" class="regular-text" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo esc_html__('Button 1 URL', 'kenya-safari'); ?></th>
+                    <td>
+                        <input type="text" name="kenya_cta_btn1_url" value="<?php echo esc_attr(get_option('kenya_cta_btn1_url', '#destinations')); ?>" class="regular-text" />
+                        <p class="description">You can use # for anchor links or full URLs like https://example.com</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo esc_html__('Button 2 Text', 'kenya-safari'); ?></th>
+                    <td>
+                        <input type="text" name="kenya_cta_btn2_text" value="<?php echo esc_attr(get_option('kenya_cta_btn2_text', 'Chat on WhatsApp')); ?>" class="regular-text" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo esc_html__('Background Color', 'kenya-safari'); ?></th>
+                    <td>
+                        <input type="color" name="kenya_cta_bg_color" value="<?php echo esc_attr(get_option('kenya_cta_bg_color', '#2a1f18')); ?>" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo esc_html__('Background Image', 'kenya-safari'); ?></th>
+                    <td>
+                        <div class="cta-image-upload">
+                            <input type="hidden" name="kenya_cta_bg_image" id="kenya_cta_bg_image" value="<?php echo esc_attr(get_option('kenya_cta_bg_image', '')); ?>" />
+                            <div id="cta-image-preview" style="margin-bottom: 10px;">
+                                <?php 
+                                $bg_image = get_option('kenya_cta_bg_image', '');
+                                if ($bg_image): 
+                                ?>
+                                    <img src="<?php echo esc_url($bg_image); ?>" style="max-width: 300px; height: auto; border: 1px solid #ddd; padding: 5px;" />
+                                <?php endif; ?>
+                            </div>
+                            <button type="button" class="button" id="upload-cta-image">Upload Image</button>
+                            <button type="button" class="button" id="remove-cta-image" style="display: <?php echo $bg_image ? 'inline-block' : 'none'; ?>;">Remove Image</button>
+                            <p class="description">Recommended size: 1920x1080px. Image will have 20% opacity overlay.</p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            
+            <?php submit_button(__('Save Settings', 'kenya-safari')); ?>
+        </form>
+    </div>
+    <?php
+}
+
+// Custom sanitizer for URL field that allows #
+function kenya_safari_sanitize_url_with_hash($input) {
+    // Allow # for anchor links
+    if ($input === '#' || strpos($input, '#') === 0) {
+        return $input;
+    }
+    // Otherwise sanitize as URL
+    return esc_url_raw($input);
+}
+
+// Add Footer Name setting
+register_setting('kenya_safari_cta_settings', 'kenya_footer_name');
+add_settings_field(
+    'kenya_footer_name',
+    'Site Name',
+    'kenya_footer_name_callback',
+    'kenya-safari-cta',
+    'kenya_footer_section'
+);
+
+function kenya_footer_name_callback() {
+    $name = get_option('kenya_footer_name', 'Kenya Safari Solutions');
+    echo '<input type="text" name="kenya_footer_name" value="' . esc_attr($name) . '" class="regular-text" />';
+}
