@@ -1366,3 +1366,14 @@ header > div {
         padding-right: 0.75rem !important;
     }
 }
+
+/* Dark mode logo switching */
+.dark-mode-logo {
+    display: none;
+}
+.dark .custom-logo {
+    display: none !important;
+}
+.dark .dark-mode-logo {
+    display: block !important;
+}

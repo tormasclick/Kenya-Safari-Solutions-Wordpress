@@ -46,6 +46,7 @@
             <a href="<?php echo home_url(); ?>" class="site-logo flex items-center gap-2 flex-shrink-0">
                 <?php if (has_custom_logo()): ?>
                     <?php the_custom_logo(); ?>
+                <?php $dark_logo = get_theme_mod('kenya_dark_logo'); if ($dark_logo): ?><img src="<?php echo esc_url($dark_logo); ?>" alt="Dark Logo" class="dark-mode-logo" style="display:none"><?php endif; ?>
                 <?php else: ?>
                     <div class="h-9 w-9 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center text-white font-bold text-sm">KS</div>
                 <?php endif; ?>
