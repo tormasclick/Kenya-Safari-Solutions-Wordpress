@@ -404,7 +404,7 @@ document.querySelectorAll('.faq-toggle').forEach(button => {
 });
 
 // WhatsApp link
-const whatsappNumber = "<?php echo esc_js($whatsapp_number); ?>";
+// const whatsappNumber = "<?php echo esc_js($whatsapp_number); ?>";
 const waMessage = "Hi, I'm interested in booking the <?php echo addslashes(get_the_title()); ?> marine experience. Can you share more details about availability and pricing?";
 const waUrl = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(waMessage);
 document.getElementById('marine-wa')?.setAttribute('href', waUrl);
@@ -412,4 +412,13 @@ document.getElementById('marine-wa')?.setAttribute('href', waUrl);
 
 <?php endwhile; endif; ?>
 
+<script>
+function changeMainImage(element) {
+    const newImageUrl = element.getAttribute('data-image');
+    const mainImage = document.getElementById('main-marine-image');
+    if (mainImage && newImageUrl) {
+        mainImage.src = newImageUrl;
+    }
+}
+</script>
 <?php get_footer(); ?>

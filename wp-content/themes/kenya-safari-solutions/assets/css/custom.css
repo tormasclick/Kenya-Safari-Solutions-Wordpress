@@ -1377,3 +1377,23 @@ header > div {
 .dark .dark-mode-logo {
     display: block !important;
 }
+
+/* Social share button animations */
+.share-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Social share inline buttons */
+.social-share-inline .w-10 {
+    transition: all 0.2s ease;
+}
+
+.social-share-inline .w-10:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}

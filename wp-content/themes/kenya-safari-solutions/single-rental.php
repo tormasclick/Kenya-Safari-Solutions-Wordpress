@@ -259,83 +259,72 @@
     </div>
 </main>
 
+
+<?php endwhile; endif; ?>
+
+<?php get_footer(); ?>
+
 <script>
-// Gallery thumbnail click to change main image
+// Single script for rentals - all functionality
 function changeMainImage(element) {
-    const newImageUrl = element.getAttribute('data-image');
-    const mainImage = document.getElementById('main-rental-image');
+    var newImageUrl = element.getAttribute('data-image');
+    var mainImage = document.getElementById('main-rental-image');
     if (mainImage && newImageUrl) {
         mainImage.src = newImageUrl;
     }
 }
 
-// Double click on thumbnails to open full image in lightbox
-document.querySelectorAll('.gallery-thumb').forEach(thumb => {
-    thumb.addEventListener('dblclick', function() {
-        const fullImageUrl = this.getAttribute('data-image');
-        const lightbox = document.createElement('div');
-        lightbox.style.position = 'fixed';
-        lightbox.style.top = '0';
-        lightbox.style.left = '0';
-        lightbox.style.width = '100%';
-        lightbox.style.height = '100%';
-        lightbox.style.backgroundColor = 'rgba(0,0,0,0.9)';
-        lightbox.style.zIndex = '9999';
-        lightbox.style.display = 'flex';
-        lightbox.style.alignItems = 'center';
-        lightbox.style.justifyContent = 'center';
-        lightbox.style.cursor = 'pointer';
-        lightbox.innerHTML = '<img src="' + fullImageUrl + '" style="max-width: 90%; max-height: 90%; object-fit: contain;">';
-        lightbox.onclick = function() { this.remove(); };
-        document.body.appendChild(lightbox);
-    });
-});
-
-// Double click on main image to open lightbox
-const mainImage = document.getElementById('main-rental-image');
-if (mainImage) {
-    mainImage.addEventListener('dblclick', function() {
-        const lightbox = document.createElement('div');
-        lightbox.style.position = 'fixed';
-        lightbox.style.top = '0';
-        lightbox.style.left = '0';
-        lightbox.style.width = '100%';
-        lightbox.style.height = '100%';
-        lightbox.style.backgroundColor = 'rgba(0,0,0,0.9)';
-        lightbox.style.zIndex = '9999';
-        lightbox.style.display = 'flex';
-        lightbox.style.alignItems = 'center';
-        lightbox.style.justifyContent = 'center';
-        lightbox.style.cursor = 'pointer';
-        lightbox.innerHTML = '<img src="' + mainImage.src + '" style="max-width: 90%; max-height: 90%; object-fit: contain;">';
-        lightbox.onclick = function() { this.remove(); };
-        document.body.appendChild(lightbox);
-    });
-}
-
-// FAQ Toggle functionality
-document.querySelectorAll('.faq-toggle').forEach(button => {
-    button.addEventListener('click', () => {
-        const answer = button.nextElementSibling;
-        const icon = button.querySelector('.fa-chevron-right');
-        answer.classList.toggle('hidden');
-        if (icon) {
-            if (answer.classList.contains('hidden')) {
-                icon.style.transform = 'rotate(0deg)';
-            } else {
-                icon.style.transform = 'rotate(90deg)';
+// Wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', function() {
+    // Double click on thumbnails to open lightbox
+    var thumbs = document.querySelectorAll('.gallery-thumb');
+    for (var i = 0; i < thumbs.length; i++) {
+        thumbs[i].addEventListener('dblclick', function() {
+            var imgUrl = this.getAttribute('data-image');
+            var lightbox = document.createElement('div');
+            lightbox.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer';
+            lightbox.innerHTML = '<img src="' + imgUrl + '" style="max-width:90%;max-height:90%;object-fit:contain">';
+            lightbox.onclick = function() { this.remove(); };
+            document.body.appendChild(lightbox);
+        });
+    }
+    
+    // Main image double click
+    var mainImg = document.getElementById('main-rental-image');
+    if (mainImg) {
+        mainImg.addEventListener('dblclick', function() {
+            var lightbox = document.createElement('div');
+            lightbox.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer';
+            lightbox.innerHTML = '<img src="' + mainImg.src + '" style="max-width:90%;max-height:90%;object-fit:contain">';
+            lightbox.onclick = function() { this.remove(); };
+            document.body.appendChild(lightbox);
+        });
+    }
+    
+    // FAQ Toggle
+    var faqBtns = document.querySelectorAll('.faq-toggle');
+    for (var j = 0; j < faqBtns.length; j++) {
+        faqBtns[j].addEventListener('click', function(e) {
+            e.preventDefault();
+            var answer = this.nextElementSibling;
+            var icon = this.querySelector('.fa-chevron-right');
+            if (answer) {
+                answer.classList.toggle('hidden');
+                if (icon) {
+                    icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
+                }
             }
-        }
-    });
+        });
+    }
 });
 
 // WhatsApp link
-const whatsappNumber = "<?php echo esc_js($whatsapp_number); ?>";
-const waMessage = "Hi, I'm interested in renting the <?php echo addslashes(get_the_title()); ?>. Can you share more details about availability and pricing?";
-const waUrl = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(waMessage);
-document.getElementById('rental-wa')?.setAttribute('href', waUrl);
+var waBtn = document.getElementById('rental-wa');
+if (waBtn) {
+    var waNumber = "<?php echo esc_js(get_option('kenya_whatsapp_number', '254700563754')); ?>";
+    var waMsg = "Hi, I'm interested in renting <?php echo addslashes(get_the_title()); ?>. Can you share more details?";
+    waBtn.href = "https://wa.me/" + waNumber + "?text=" + encodeURIComponent(waMsg);
+}
 </script>
-
-<?php endwhile; endif; ?>
 
 <?php get_footer(); ?>

@@ -372,3 +372,68 @@ document.getElementById('destination-wa')?.setAttribute('href', waUrl);
 <?php endwhile; endif; ?>
 
 <?php get_footer(); ?>
+
+<script>
+// Single script for all functionality - no duplicates
+(function() {
+    // Gallery functions
+    window.changeMainImage = function(element) {
+        const newImageUrl = element.getAttribute('data-image');
+        const mainImage = document.getElementById('main-destination-image');
+        if (mainImage && newImageUrl) {
+            mainImage.src = newImageUrl;
+        }
+    };
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // FAQ Accordion
+        document.querySelectorAll('.faq-toggle').forEach(function(button) {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('.fa-chevron-right');
+                if (answer) {
+                    answer.classList.toggle('hidden');
+                    if (icon) {
+                        icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
+                    }
+                }
+            });
+        });
+        
+        // Gallery double click lightbox
+        document.querySelectorAll('.gallery-thumb').forEach(function(thumb) {
+            thumb.addEventListener('dblclick', function() {
+                const imgUrl = this.getAttribute('data-image');
+                const lightbox = document.createElement('div');
+                lightbox.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer';
+                lightbox.innerHTML = '<img src="' + imgUrl + '" style="max-width:90%;max-height:90%;object-fit:contain">';
+                lightbox.onclick = function() { this.remove(); };
+                document.body.appendChild(lightbox);
+            });
+        });
+        
+        // Main image double click
+        const mainImg = document.getElementById('main-destination-image');
+        if (mainImg) {
+            mainImg.addEventListener('dblclick', function() {
+                const lightbox = document.createElement('div');
+                lightbox.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer';
+                lightbox.innerHTML = '<img src="' + mainImg.src + '" style="max-width:90%;max-height:90%;object-fit:contain">';
+                lightbox.onclick = function() { this.remove(); };
+                document.body.appendChild(lightbox);
+            });
+        }
+    });
+})();
+
+// WhatsApp link - single declaration
+document.addEventListener('DOMContentLoaded', function() {
+    const waBtn = document.getElementById('destination-wa');
+    if (waBtn) {
+        const waNumber = "<?php echo esc_js($whatsapp_number); ?>";
+        const waMsg = "Hi, I'm interested in booking <?php echo addslashes(get_the_title()); ?>. Can you share more details?";
+        waBtn.href = "https://wa.me/" + waNumber + "?text=" + encodeURIComponent(waMsg);
+    }
+});
+</script>
