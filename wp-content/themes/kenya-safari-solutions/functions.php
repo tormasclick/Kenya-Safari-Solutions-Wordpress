@@ -75,3 +75,10 @@ function kenya_safari_mobile_menu_script() {
 }
 add_action('wp_enqueue_scripts', 'kenya_safari_mobile_menu_script');
 require_once get_template_directory() . '/inc/social-sharing.php';
+
+// Enqueue title highlighter script
+function kenya_safari_title_highlighter() {
+    wp_enqueue_script("kenya-title-highlighter", get_template_directory_uri() . "/assets/js/title-highlight.js", array(), "1.0.0", true);
+}
+add_action("wp_enqueue_scripts", "kenya_safari_title_highlighter");
+

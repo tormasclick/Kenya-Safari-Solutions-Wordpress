@@ -21,7 +21,7 @@
                 Tailored Kenyan Journeys
             </span>
             
-            <h1 class="mt-6 font-display text-4xl text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 class="mt-6 font-display text-4xl text-white sm:text-5xl md:text-6xl lg:text-7xl"  sm:text-5xl md:text-6xl lg:text-7xl">
                 Explore Kenya 
                 <span class="text-gradient-gold">Beyond</span>
                 <br class="hidden sm:inline">

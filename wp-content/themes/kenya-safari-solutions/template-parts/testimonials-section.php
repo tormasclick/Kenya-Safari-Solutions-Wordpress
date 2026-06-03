@@ -39,7 +39,7 @@
                     $text = get_post_meta($testimonial->ID, '_testimonial_text', true);
                     if (!$text) $text = $testimonial->post_content;
             ?>
-                <article class="hover-lift relative w-[88%] shrink-0 snap-center rounded-3xl border border-gray-200 dark:border-[#3f2c21] bg-white dark:bg-[#241710] p-7 sm:w-[420px]"
+                <article class="hover-lift relative testimonial-card w-[88%] shrink-0 snap-center rounded-3xl border border-gray-200 dark:border-[#3f2c21] bg-white dark:bg-[#241710] p-7 sm:w-[420px]"
                          style="animation: fade-up 0.7s <?php echo $i * 70; ?>ms both ease-out">
                     <div class="flex gap-0.5 text-amber-500">
                         <?php for ($s = 1; $s <= 5; $s++): ?>
