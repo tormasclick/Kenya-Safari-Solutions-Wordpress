@@ -163,3 +163,22 @@ document.getElementById('whatsapp-btn')?.setAttribute('href', 'https://wa.me/' +
 </script>
 
 <main>
+
+<script>
+// Ensure logo is clickable in dark mode
+document.addEventListener('DOMContentLoaded', function() {
+    const logoLink = document.querySelector('.site-logo');
+    const darkLogo = document.querySelector('.dark-mode-logo');
+    
+    if (logoLink && darkLogo) {
+        // Make sure dark logo doesn't block clicks
+        darkLogo.style.pointerEvents = 'auto';
+        darkLogo.style.cursor = 'pointer';
+        
+        // If dark logo is clicked, navigate to home
+        darkLogo.addEventListener('click', function(e) {
+            window.location.href = logoLink.href;
+        });
+    }
+});
+</script>

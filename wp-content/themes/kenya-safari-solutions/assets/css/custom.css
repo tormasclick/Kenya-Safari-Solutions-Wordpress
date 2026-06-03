@@ -1397,3 +1397,146 @@ header > div {
     transform: translateY(-2px);
     filter: brightness(1.1);
 }
+
+/* Logo switching - Light mode shows custom-logo, Dark mode shows dark-mode-logo */
+.custom-logo {
+    display: block;
+    max-height: 40px;
+    width: auto;
+}
+
+.dark-mode-logo {
+    display: none;
+    max-height: 40px;
+    width: auto;
+}
+
+.dark .custom-logo {
+    display: none !important;
+}
+
+.dark .dark-mode-logo {
+    display: block !important;
+}
+
+/* Ensure logo is clickable */
+header a:first-child {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Logo switching - Light mode shows custom-logo, Dark mode shows dark-mode-logo */
+.custom-logo {
+    display: block;
+    max-height: 40px;
+    width: auto;
+}
+
+.dark-mode-logo {
+    display: none;
+    max-height: 40px;
+    width: auto;
+}
+
+.dark .custom-logo {
+    display: none !important;
+}
+
+.dark .dark-mode-logo {
+    display: block !important;
+}
+
+/* Ensure logo is clickable */
+header a:first-child {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Logo switching - Both logos inside same link */
+.custom-logo {
+    display: block;
+    max-height: 40px;
+    width: auto;
+}
+
+.dark-mode-logo {
+    display: none;
+    max-height: 40px;
+    width: auto;
+}
+
+/* In dark mode, hide light logo and show dark logo */
+.dark .custom-logo {
+    display: none !important;
+}
+
+.dark .dark-mode-logo {
+    display: block !important;
+}
+
+/* Make sure the entire logo area is clickable */
+header .flex.items-center.gap-2.flex-shrink-0 {
+    cursor: pointer;
+}
+
+/* Logo switching - Both logos inside same link */
+.custom-logo {
+    display: block;
+    max-height: 40px;
+    width: auto;
+}
+
+.dark-mode-logo {
+    display: none;
+    max-height: 40px;
+    width: auto;
+}
+
+/* In dark mode, hide light logo and show dark logo */
+.dark .custom-logo {
+    display: none !important;
+}
+
+.dark .dark-mode-logo {
+    display: block !important;
+}
+
+/* Make sure the entire logo area is clickable */
+header .flex.items-center.gap-2.flex-shrink-0 {
+    cursor: pointer;
+}
+
+/* Dark mode logo */
+.dark-mode-logo {
+    display: none !important;
+}
+
+.dark .dark-mode-logo {
+    display: block !important;
+}
+
+.dark .custom-logo {
+    display: none !important;
+}
+
+/* Force both logos to be clickable */
+.site-logo,
+.custom-logo,
+.dark-mode-logo {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Make sure the entire link area is clickable */
+.site-logo {
+    display: inline-flex !important;
+    cursor: pointer !important;
+}
+
+/* Remove any potential overlay blocking clicks */
+header nav {
+    position: relative;
+    z-index: 50;
+}
